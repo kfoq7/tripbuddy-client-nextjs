@@ -1,0 +1,33 @@
+'use client'
+
+import { Button } from './ui/Button'
+import { useMultistepsForm } from '@/hooks/useMultistepsForm'
+import SelectTrip from './select-trip'
+import GetData from './GetData'
+
+export default function JourneyStepsForm() {
+  const { step, nextStep, previousStep } = useMultistepsForm({
+    steps: [
+      <SelectTrip key={0} />,
+      <GetData key={1} />,
+      <div key={2}>Tree</div>
+    ]
+  })
+
+  return (
+    <>
+      <div className="">
+        <form>{step}</form>
+      </div>
+
+      <div className="mt-4 flex flex-wrap items-center justify-center gap-6">
+        <Button className="w-[180px] text-xl" onClick={previousStep}>
+          Atras
+        </Button>
+        <Button className="w-[180px] text-xl" onClick={nextStep}>
+          Siguiente
+        </Button>
+      </div>
+    </>
+  )
+}
